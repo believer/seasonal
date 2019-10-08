@@ -1,6 +1,8 @@
 [@react.component]
 let make = (~crop: Crop.t, ~selectedSeason) => {
-  <div className="flex items-center justify-end mb-4 last:mb-0">
+  <Router.Link
+    className="flex items-center justify-end mb-4 last:mb-0"
+    to_={Router.Route.CropRoute(crop.id)}>
     <div className="mr-4 text-sm text-right text-gray-700">
       {React.string(crop.name)}
     </div>
@@ -22,5 +24,5 @@ let make = (~crop: Crop.t, ~selectedSeason) => {
        ->Belt.List.toArray
        ->React.array}
     </div>
-  </div>;
+  </Router.Link>;
 };

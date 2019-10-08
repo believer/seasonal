@@ -59,3 +59,6 @@ let list =
       ~category=Vegetable,
     ),
   ];
+
+let find = cropId =>
+  list->Belt.List.keep(({id}) => id === cropId)->Belt.List.get(0);
