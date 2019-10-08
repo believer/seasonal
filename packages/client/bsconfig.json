@@ -20,16 +20,21 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["reason-react", "re-classnames"],
+  "bs-dependencies": [
+    "reason-react",
+    "re-classnames",
+    "reason-apollo",
+    "reason-apollo-hooks"
+  ],
   "bs-dev-dependencies": [
     "@glennsl/bs-jest",
     "bs-react-testing-library",
     "bs-jest-dom"
   ],
+  "ppx-flags": ["graphql_ppx/ppx"],
   "refmt": 3,
   "warnings": {
     "number": "+A-9-40-42-48",
     "error": "+A-3-40-42-44-102"
   }
 }
-

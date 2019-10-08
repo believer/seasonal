@@ -5,7 +5,7 @@ let make = () => {
 
   switch (route) {
   | HomeRoute => <HomePage />
-  | CropRoute(cropId) => <CropPage cropId />
+  | CropRoute(name) => <CropPage name />
   | NotFoundRoute => <NotFound />
   };
 };

@@ -1,7 +1,5 @@
 module Category = {
-  type t =
-    | Fruit
-    | Vegetable;
+  type t = [ | `FRUIT | `VEGETABLE];
 };
 
 module InSeason = {
@@ -11,26 +9,28 @@ module InSeason = {
 };
 
 module Season = {
-  type t =
-    | AllYear
-    | Months(list(Month.t));
-
   let make = season => {
     switch (season) {
-    | AllYear => Belt.List.make(12, InSeason.In)
-    | Months(months) =>
-      Belt.List.make(12, InSeason.Out)
-      ->Belt.List.mapWithIndex((index, _) =>
-          switch (
-            index,
-            months
-            ->Belt.List.map(Month.toInt)
-            ->Belt.List.some(m => m - 1 === index),
-          ) {
-          | (_, true) => InSeason.In
-          | _ => Out
-          }
-        )
+    | None => []
+    | Some(season) =>
+      switch (season->Belt.Array.length) {
+      | 12 => Belt.List.make(12, InSeason.In)
+      | _ =>
+        Belt.List.make(12, InSeason.Out)
+        ->Belt.List.mapWithIndex((index, _) =>
+            switch (
+              index,
+              season
+              ->Belt.List.fromArray
+              ->Belt.List.keepMap(m => m)
+              ->Belt.List.map(Month.toInt)
+              ->Belt.List.some(m => m - 1 === index),
+            ) {
+            | (_, true) => InSeason.In
+            | _ => Out
+            }
+          )
+      }
     };
   };
 };
@@ -42,9 +42,9 @@ type t = {
   category: Category.t,
 };
 
-let make = (~name, ~season, ~category) => {
-  id: Slug.make(name),
-  name,
-  season: Season.make(season),
-  category,
+let make = crop => {
+  id: Slug.make(crop##name),
+  name: crop##name,
+  season: Season.make(crop##season),
+  category: crop##category,
 };

@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "seasonal-web",
   "version": "0.1.0",
   "scripts": {
     "build": "bsb -make-world",
@@ -10,7 +10,8 @@
     "test:watch": "jest --watch",
     "webpack": "webpack -w",
     "webpack:production": "NODE_ENV=production webpack",
-    "server": "webpack-dev-server"
+    "server": "webpack-dev-server",
+    "generate": "npx send-introspection-query http://localhost:5000/graphql && npm run clean && npm run start"
   },
   "keywords": [
     "BuckleScript"
@@ -18,10 +19,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@apollo/react-hooks": "3.1.2",
     "cuid": "2.1.6",
+    "graphql_ppx": "0.2.8",
     "re-classnames": "4.0.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
+    "reason-apollo": "0.17.0",
+    "reason-apollo-hooks": "2.7.0",
     "reason-react": "0.7.0"
   },
   "devDependencies": {
