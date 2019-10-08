@@ -4,6 +4,7 @@
 
 :root {
   /* || Tailwind */
+  --tEight: 0.125rem;
   --t1: 0.25rem;
   --t4: 1rem;
   --t5: 1.25rem;
@@ -23,9 +24,25 @@ body {
 }
 
 .grid-template-main {
-  grid-template-columns: var(--t5) 1fr 600px 1fr var(--t5);
+  grid-template-columns: var(--t5) 1fr minmax(auto, 600px) 1fr var(--t5);
+}
+
+.grid-template-row {
+  grid-template-columns: auto repeat(12, 1fr);
+}
+
+.grid-template-12 {
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .grid-column-main {
   grid-column: 3 / 4;
+}
+
+.md\:grid-column-gap-0 {
+  grid-column-gap: 0;
+}
+
+.grid-column-gap-1\/8 {
+  grid-column-gap: var(--tEight);
 }

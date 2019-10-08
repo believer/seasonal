@@ -12,6 +12,9 @@ let make = (~cropId) => {
         {React.string("Tillbaka")}
       </Router.Link>
       <Typography.H1> {React.string(crop.name)} </Typography.H1>
+      <div className="mt-4">
+        <YearSeason format=`Grid season={crop.season} />
+      </div>
     </Layout>
   };
 };
