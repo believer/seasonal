@@ -36,14 +36,14 @@ module Season = {
 };
 
 type t = {
-  id: CUID.t,
+  id: string,
   name: string,
   season: list(InSeason.t),
   category: Category.t,
 };
 
 let make = (~name, ~season, ~category) => {
-  id: CUID.make(),
+  id: Slug.make(name),
   name,
   season: Season.make(season),
   category,
